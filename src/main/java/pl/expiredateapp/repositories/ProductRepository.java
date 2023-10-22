@@ -1,9 +1,8 @@
 package pl.expiredateapp.repositories;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
+import pl.expiredateapp.entities.Product;
 
-@Repository
-public class ProductRepository {
-
+public interface ProductRepository extends CrudRepository<Product, Long> {
 
 }
