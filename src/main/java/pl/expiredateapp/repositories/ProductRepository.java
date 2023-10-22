@@ -1,20 +1,8 @@
 package pl.expiredateapp.repositories;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 import pl.expiredateapp.entities.Product;
 
-import java.util.ArrayList;
-import java.util.List;
+public interface ProductRepository extends CrudRepository<Product, Long> {
 
-@Repository
-public class ProductRepository {
-
-
-    public List<Product> getProducts() {
-        List<Product> p = new ArrayList<>();
-
-        p.add(new Product(1, "cos"));
-        p.add(new Product(2, "drugiecos"));
-        return p;
-    }
 }
