@@ -1,9 +1,7 @@
 package pl.expiredateapp.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import pl.expiredateapp.entities.Product;
 import pl.expiredateapp.services.ProductService;
@@ -20,5 +18,15 @@ public class ProductController {
     @GetMapping
     List<Product> getProducts() {
         return productService.getAllProducts();
+    }
+
+    @GetMapping("/{id}")
+    Product getSingleProduct(@PathVariable long id) {
+        return productService.getProductById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    void deleteProduct(@PathVariable long id) {
+        productService.deleteProductById(id);
     }
 }
