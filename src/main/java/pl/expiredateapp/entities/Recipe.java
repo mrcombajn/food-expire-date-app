@@ -1,18 +1,19 @@
 package pl.expiredateapp.entities;
 
-
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.*;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,9 +21,9 @@ public class Product {
 
     private String name;
 
+    private String ingredients;
+
     private String description;
 
-    private String barCode;
-
-    private Date expireDate;
+    private String steps;
 }
