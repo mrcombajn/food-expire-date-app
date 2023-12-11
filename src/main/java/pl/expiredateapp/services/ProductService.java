@@ -1,9 +1,14 @@
 package pl.expiredateapp.services;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import pl.expiredateapp.dtos.products.ProductDto;
+
 import pl.expiredateapp.entities.Product;
 import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
+
 import pl.expiredateapp.repositories.ProductRepository;
 
 import java.util.List;
@@ -14,7 +19,8 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public Product addProduct(Product product) {
+    public Product addProduct(ProductDto productDto) {
+        Product product = new Product(productDto);
         return productRepository.save(product);
     }
 
