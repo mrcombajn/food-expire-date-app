@@ -8,13 +8,13 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class ProductDto implements Serializable {
+public class RecipeProductDto implements Serializable {
 
     private int id;
 
     private String name;
 
-    public ProductDto(Product product) {
+    public RecipeProductDto(Product product) {
         this.id = product.getId();
         this.name = product.getName();
     }

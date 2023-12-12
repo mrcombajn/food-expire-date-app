@@ -11,7 +11,6 @@ import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
 import pl.expiredateapp.repositories.ProductRepository;
 import java.util.List;
 
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,10 +28,8 @@ public class ProductService {
         return ((List<Product>) productRepository.findAll()).stream().map(ProductDto::new).collect(Collectors.toList());
     }
 
-    public List<ProductDto> getProductById(Long id) {
-        Optional<Product> products = Optional.ofNullable(productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!")));
-
-        return products.map(ProductDto::new).stream().collect(Collectors.toList());
+    public ProductDto getProductById(Long id) {
+        return new ProductDto(productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!")));
     }
 
     public void deleteProductById(Long id) {

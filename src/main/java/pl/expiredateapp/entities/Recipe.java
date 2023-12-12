@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.expiredateapp.dtos.recipes.RecipeDto;
 
 @Getter
@@ -34,17 +31,13 @@ public class Recipe {
     @Column(name="steps")
     private String steps;
 
+    @SneakyThrows
     public Recipe (RecipeDto recipeDto) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         this.name = recipeDto.getName();
-        try {
-            this.ingredients = objectMapper.writeValueAsString(recipeDto.getIngredients());
-            this.steps = objectMapper.writeValueAsString(recipeDto.getSteps());
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-
+        this.ingredients = objectMapper.writeValueAsString(recipeDto.getIngredients());
+        this.steps = objectMapper.writeValueAsString(recipeDto.getSteps());
         this.description = recipeDto.getDescription();
     }
 }
