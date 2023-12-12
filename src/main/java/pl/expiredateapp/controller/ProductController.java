@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import pl.expiredateapp.dtos.products.ProductDto;
-import pl.expiredateapp.entities.Product;
 import pl.expiredateapp.services.ProductService;
 
 import java.util.List;
@@ -17,12 +16,12 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public @ResponseBody List<Product> getProducts() {
+    public @ResponseBody List<ProductDto> getProducts() {
         return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody Product getSingleProduct(@PathVariable long id) {
+    public @ResponseBody List<ProductDto> getSingleProduct(@PathVariable long id) {
         return productService.getProductById(id);
     }
 

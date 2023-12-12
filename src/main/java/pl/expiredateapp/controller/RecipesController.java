@@ -18,8 +18,6 @@ public class RecipesController {
 
     private final RecipeService recipeService;
 
-    private final ProductService productService;
-
     public List<RecipeDto> getAllAvailableRecipes() {
         return null;
     }

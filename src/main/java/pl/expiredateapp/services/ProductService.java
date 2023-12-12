@@ -1,6 +1,5 @@
 package pl.expiredateapp.services;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +9,10 @@ import pl.expiredateapp.entities.Product;
 import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
 
 import pl.expiredateapp.repositories.ProductRepository;
-
 import java.util.List;
+
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,12 +25,14 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public List<Product> getAllProducts() {
-        return (List<Product>) productRepository.findAll();
+    public List<ProductDto> getAllProducts() {
+        return ((List<Product>) productRepository.findAll()).stream().map(ProductDto::new).collect(Collectors.toList());
     }
 
-    public Product getProductById(Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!"));
+    public List<ProductDto> getProductById(Long id) {
+        Optional<Product> products = Optional.ofNullable(productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!")));
+
+        return products.map(ProductDto::new).stream().collect(Collectors.toList());
     }
 
     public void deleteProductById(Long id) {
