@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.expiredateapp.entities.Product;
 
-import java.io.Serializable;
-
 @Getter
 @Setter
-public class RecipeProductDto implements Serializable {
+public class RecipeProductDto {
 
     private int id;
 

@@ -23,11 +23,9 @@ public class RecipeService {
     private final ProductService productService;
 
     public List<RecipeDto> getAllRecipes(Long id) {
-        ProductDto allProducts = productService.getProductById(id);
-
         return ((List<Recipe>) recipesRepository.findAll())
                 .stream()
-                .map(n -> new RecipeDto(n, allProducts))
+                .map(RecipeDto::new)
                 .collect(Collectors.toList());
     }
 

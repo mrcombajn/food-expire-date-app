@@ -7,12 +7,16 @@ import jakarta.persistence.*;
 import lombok.*;
 import pl.expiredateapp.dtos.recipes.RecipeDto;
 
+import javax.xml.validation.Schema;
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Recipes")
+@Table(name = "recipes")
 public class Recipe {
 
     @Id
@@ -30,6 +34,14 @@ public class Recipe {
 
     @Column(name="steps")
     private String steps;
+
+    @ManyToMany
+    @JoinTable(
+            name = "recipes_product",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    List<Product> products = new ArrayList<>();
 
     @SneakyThrows
     public Recipe (RecipeDto recipeDto) {

@@ -26,11 +26,11 @@ public class RecipeDto implements Serializable {
     private String description;
 
     @SneakyThrows
-    public RecipeDto(Recipe recipe, List<RecipeProductDto> ingredients) {
+    public RecipeDto(Recipe recipe) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         this.name = recipe.getName();
-        this.ingredients = ingredients;
+        this.ingredients = recipe.getProducts().stream().map(RecipeProductDto::new).toList();
         this.steps = objectMapper.readValue(recipe.getSteps(), Steps.class).getSteps();
         this.description = recipe.getDescription();
     }
