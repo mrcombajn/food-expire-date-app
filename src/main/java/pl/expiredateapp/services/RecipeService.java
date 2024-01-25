@@ -19,8 +19,6 @@ public class RecipeService {
 
     private final RecipesRepository recipesRepository;
 
-    private final ProductService productService;
-
     public List<RecipeDto> getAllRecipes(Long id) {
         return ((List<Recipe>) recipesRepository.findAll())
                 .stream()
