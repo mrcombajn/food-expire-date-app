@@ -4,7 +4,6 @@ package pl.expiredateapp.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import pl.expiredateapp.dtos.products.ProductDto;
 import pl.expiredateapp.dtos.recipes.RecipeDto;
 import pl.expiredateapp.entities.Recipe;
 import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
