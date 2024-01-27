@@ -44,7 +44,7 @@ public class Recipe {
     List<Product> products = new ArrayList<>();
 
     @SneakyThrows
-    public Recipe (RecipeDto recipeDto) {
+    public Recipe(RecipeDto recipeDto) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         this.name = recipeDto.getName();

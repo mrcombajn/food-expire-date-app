@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.expiredateapp.dtos.recipes.RecipeDto;
-import pl.expiredateapp.services.ProductService;
 import pl.expiredateapp.services.RecipeService;
 
 import java.util.List;
