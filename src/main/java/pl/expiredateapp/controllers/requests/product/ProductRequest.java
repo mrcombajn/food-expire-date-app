@@ -10,12 +10,12 @@ import lombok.Setter;
 @Setter
 public class ProductRequest {
 
-    private int id;
+    private long id;
 
     private String barcode;
 
     @JsonCreator
-    public ProductRequest(int id) {
+    public ProductRequest(long id) {
         this.id = id;
     }
 

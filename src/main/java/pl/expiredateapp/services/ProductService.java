@@ -3,6 +3,7 @@ package pl.expiredateapp.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import pl.expiredateapp.controllers.requests.product.ProductRequest;
 import pl.expiredateapp.dtos.products.ProductDto;
 
 import pl.expiredateapp.entities.Product;
@@ -28,8 +29,9 @@ public class ProductService {
         return ((List<Product>) productRepository.findAll()).stream().map(ProductDto::new).collect(Collectors.toList());
     }
 
-    public ProductDto getProductById(Long id) {
-        return new ProductDto(productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!")));
+    public ProductDto getProductById(ProductRequest productRequest) {
+        return new ProductDto(productRepository
+                .findById(productRequest.getId()).orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!")));
     }
 
     public void deleteProductById(Long id) {

@@ -1,28 +1,30 @@
 package pl.expiredateapp.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import pl.expiredateapp.controllers.requests.product.ProductRequest;
 import pl.expiredateapp.dtos.products.ProductDto;
 import pl.expiredateapp.services.ProductService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("product")
+@RequestMapping("api")
 @RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping
-    public List<ProductDto> getProducts() {
-        return productService.getAllProducts();
+    @GetMapping("/products")
+    public ResponseEntity<Object> getProducts() {
+        return ResponseEntity.ok(productService.getAllProducts());
     }
 
-    @GetMapping("/{id}")
-    public ProductDto getSingleProduct(@PathVariable long id) {
-        return productService.getProductById(id);
+    @GetMapping("/product")
+    public ResponseEntity<Object> getSingleProductById(@RequestParam ProductRequest productRequest) {
+        return ResponseEntity.ok(productService.getProductById(productRequest));
     }
 
     @DeleteMapping("/{id}")
