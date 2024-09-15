@@ -8,8 +8,6 @@ import pl.expiredateapp.controllers.requests.product.ProductRequest;
 import pl.expiredateapp.dtos.products.ProductDto;
 import pl.expiredateapp.services.ProductService;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("api")
 @RequiredArgsConstructor
@@ -17,12 +15,12 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping("/products")
+    @GetMapping(value = "/products", produces = "application/json")
     public ResponseEntity<Object> getProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
-    @GetMapping("/product")
+    @GetMapping(value = "/product", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> getSingleProductById(@RequestParam ProductRequest productRequest) {
         return ResponseEntity.ok(productService.getProductById(productRequest));
     }
