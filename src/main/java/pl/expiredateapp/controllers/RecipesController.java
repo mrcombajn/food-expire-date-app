@@ -1,4 +1,4 @@
-package pl.expiredateapp.controller;
+package pl.expiredateapp.controllers;
 
 
 import lombok.RequiredArgsConstructor;
