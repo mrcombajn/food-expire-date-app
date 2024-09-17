@@ -31,7 +31,7 @@ public class ProductService {
 
     public ProductDto getProductById(ProductRequest productRequest) {
         return new ProductDto(productRepository
-                .findById(productRequest.getId()).orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!")));
+                .findById(productRequest.getId()).orElseThrow(() -> new EntityNotFoundException("Cannot find product with given id!")));
     }
 
     public void deleteProductById(Long id) {
