@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService {
+public final class ProductService {
 
     private final ProductRepository productRepository;
 
@@ -34,7 +34,7 @@ public class ProductService {
                 .findById(productRequest.getId()).orElseThrow(() -> new EntityNotFoundException("Cannot find product with given id!")));
     }
 
-    public void deleteProductById(Long id) {
-        productRepository.deleteById(id);
+    public void deleteProductById(ProductRequest productRequest) {
+        productRepository.deleteById(productRequest.getId());
     }
 }
