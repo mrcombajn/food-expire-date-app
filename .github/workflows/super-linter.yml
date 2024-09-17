@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Lint Code Base
 
 on:
   push:
@@ -13,9 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Test pushed code
+    - name: Checkout Code
         with:
-        fetch-depth: 0
+            fetch-depth: 0
 
     - name: Lint Code Base
         uses: github/super-linter@v4        
