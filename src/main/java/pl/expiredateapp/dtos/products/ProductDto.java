@@ -1,7 +1,9 @@
 package pl.expiredateapp.dtos.products;
 
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import pl.expiredateapp.entities.Product;
 
 import java.io.Serializable;

@@ -1,13 +1,13 @@
 package pl.expiredateapp.controllers;
 
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -41,12 +41,20 @@ public final class ProductController {
         return ResponseEntity.ok(productService.getProductById(productRequest));
     }
 
-    @GetMapping(value = "/product", consumes = "application/json", produces = "application/json")
+    /**
+     * Deletes a product from database.
+     * @param productRequest Product to delete.
+     */
+    @DeleteMapping(value = "/product", consumes = "application/json", produces = "application/json")
     void deleteProductById(@RequestParam ProductRequest productRequest) {
         productService.deleteProductById(productRequest);
     }
 
-    @PostMapping
+    /**
+     * Adding product to database.
+     * @param productDto Product to add.
+     */
+    @PostMapping(value = "/product", consumes = "application/json")
     void addProduct(@RequestBody ProductDto productDto) {
         productService.addProduct(productDto);
     }

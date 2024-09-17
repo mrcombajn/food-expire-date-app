@@ -5,13 +5,11 @@ import org.springframework.stereotype.Service;
 
 import pl.expiredateapp.controllers.requests.product.ProductRequest;
 import pl.expiredateapp.dtos.products.ProductDto;
-
 import pl.expiredateapp.entities.Product;
 import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
-
 import pl.expiredateapp.repositories.ProductRepository;
-import java.util.List;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,8 +28,8 @@ public final class ProductService {
     }
 
     public ProductDto getProductById(ProductRequest productRequest) {
-        return new ProductDto(productRepository
-                .findById(productRequest.getId()).orElseThrow(() -> new EntityNotFoundException("Cannot find product with given id!")));
+        return new ProductDto(productRepository.findById(productRequest.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Cannot find product with given id!")));
     }
 
     public void deleteProductById(ProductRequest productRequest) {
