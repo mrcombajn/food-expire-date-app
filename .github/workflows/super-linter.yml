@@ -1,0 +1,21 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Test pushed code
+        with:
+        fetch-depth: 0
+
+    - name: Lint Code Base
+        uses: github/super-linter@v4        
