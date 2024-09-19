@@ -1,3 +1,6 @@
+/**
+ * pl.expiredateapp.controllers is a package for controller's operations.
+ */
 package pl.expiredateapp.controllers;
 
 import lombok.RequiredArgsConstructor;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import pl.expiredateapp.controllers.requests.product.ProductRequest;
-import pl.expiredateapp.dtos.products.ProductDto;
+import pl.expiredateapp.controllers.dto.product.ProductDto;
 import pl.expiredateapp.services.ProductService;
 
 /**
@@ -29,7 +32,9 @@ public final class ProductController {
      * Get all products from database.
      * @return List of products from database.
      */
-    @GetMapping(value = "/products", produces = "application/json")
+    @GetMapping(
+            value = "/products",
+            produces = "application/json")
     public ResponseEntity<Object> getProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
@@ -39,17 +44,24 @@ public final class ProductController {
      * @param productRequest Request for a product.
      * @return Try to get product from database, otherwise it will return 400 status.
      */
-    @GetMapping(value = "/product", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> getSingleProductById(@RequestParam ProductRequest productRequest) {
+    @GetMapping(
+            value = "/product",
+            consumes = "application/json",
+            produces = "application/json")
+    public ResponseEntity<Object> getSingleProductById(
+            @RequestParam final ProductRequest productRequest) {
         return ResponseEntity.ok(productService.getProductById(productRequest));
     }
 
     /**
      * Deletes a product from database.
-     * @param productRequest Product to delete.
+     * @param productRequest ProductRequest to delete.
      */
-    @DeleteMapping(value = "/product", consumes = "application/json", produces = "application/json")
-    void deleteProductById(@RequestParam ProductRequest productRequest) {
+    @DeleteMapping(
+            value = "/product",
+            consumes = "application/json",
+            produces = "application/json")
+    void deleteProductById(@RequestParam final ProductRequest productRequest) {
         productService.deleteProductById(productRequest);
     }
 
@@ -60,7 +72,7 @@ public final class ProductController {
     @PostMapping(
             value = "/product",
             consumes = "application/json")
-    void addProduct(@RequestBody ProductDto productDto) {
+    void addProduct(@RequestBody final ProductDto productDto) {
         productService.addProduct(productDto);
     }
 }

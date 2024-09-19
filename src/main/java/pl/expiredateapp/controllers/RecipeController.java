@@ -1,3 +1,6 @@
+/**
+ * pl.expiredateapp.controllers is a package for controller's operations.
+ */
 package pl.expiredateapp.controllers;
 
 import lombok.RequiredArgsConstructor;

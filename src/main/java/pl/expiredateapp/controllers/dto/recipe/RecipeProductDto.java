@@ -1,8 +1,8 @@
-package pl.expiredateapp.dtos.recipes;
+package pl.expiredateapp.controllers.dto.recipe;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.expiredateapp.entities.Product;
+import pl.expiredateapp.repository.entity.product.Product;
 
 @Getter
 @Setter

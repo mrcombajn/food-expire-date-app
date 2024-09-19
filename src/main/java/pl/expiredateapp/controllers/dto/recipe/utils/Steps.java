@@ -1,4 +1,4 @@
-package pl.expiredateapp.dtos.recipes.utils;
+package pl.expiredateapp.controllers.dto.recipe.utils;
 
 import lombok.Getter;
 import lombok.Setter;

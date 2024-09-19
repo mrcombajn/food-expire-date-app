@@ -11,9 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.expiredateapp.controllers.requests.product.ProductRequest;
-import pl.expiredateapp.dtos.products.ProductDto;
-import pl.expiredateapp.entities.Product;
-import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
+import pl.expiredateapp.controllers.dto.product.ProductDto;
+import pl.expiredateapp.repository.entity.product.Product;
+import pl.expiredateapp.services.exceptions.EntityNotFoundException;
 import pl.expiredateapp.services.ProductService;
 
 import java.time.LocalDate;

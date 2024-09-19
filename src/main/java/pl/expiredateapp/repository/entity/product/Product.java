@@ -1,13 +1,12 @@
-package pl.expiredateapp.entities;
+package pl.expiredateapp.repository.entity.product;
 
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import pl.expiredateapp.dtos.products.ProductDto;
+import pl.expiredateapp.controllers.dto.product.ProductDto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter

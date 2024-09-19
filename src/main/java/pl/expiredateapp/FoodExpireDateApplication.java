@@ -1,3 +1,6 @@
+/**
+ * pl.expiredateapp is a main package of Food Expire Date Application.
+ */
 package pl.expiredateapp;
 
 import org.springframework.boot.SpringApplication;
@@ -16,4 +19,5 @@ public class FoodExpireDateApplication {
     public static void main(final String[] args) {
         SpringApplication.run(FoodExpireDateApplication.class, args);
     }
+
 }

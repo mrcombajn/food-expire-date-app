@@ -4,10 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import pl.expiredateapp.controllers.requests.product.ProductRequest;
-import pl.expiredateapp.dtos.products.ProductDto;
-import pl.expiredateapp.entities.Product;
-import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
-import pl.expiredateapp.repositories.ProductRepository;
+import pl.expiredateapp.controllers.dto.product.ProductDto;
+import pl.expiredateapp.repository.entity.product.Product;
+import pl.expiredateapp.services.exceptions.EntityNotFoundException;
+import pl.expiredateapp.repository.ProductRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

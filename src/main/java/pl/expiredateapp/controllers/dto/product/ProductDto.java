@@ -1,18 +1,22 @@
-package pl.expiredateapp.dtos.products;
-
+/**
+ * pl.expiredateapp.dto.product is a package for product dto definitions.
+ */
+package pl.expiredateapp.controllers.dto.product;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import pl.expiredateapp.entities.Product;
+import pl.expiredateapp.repository.entity.product.Product;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
+/**
+ * ProductDto class.
+ */
 @Getter
 @Setter
-public class ProductDto implements Serializable {
+public final class ProductDto implements Serializable {
 
     private int id;
 
@@ -24,6 +28,10 @@ public class ProductDto implements Serializable {
 
     private LocalDate expireDate;
 
+    /**
+     * ProductDto constructor.
+     * @param product Product entity from database.
+     */
     public ProductDto(Product product) {
         this.id = product.getId();
         this.name = product.getName();

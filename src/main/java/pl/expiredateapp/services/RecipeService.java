@@ -4,11 +4,11 @@ package pl.expiredateapp.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import pl.expiredateapp.dtos.recipes.RecipeDto;
-import pl.expiredateapp.entities.Recipe;
-import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
+import pl.expiredateapp.controllers.dto.recipe.RecipeDto;
+import pl.expiredateapp.repository.entity.recipe.Recipe;
+import pl.expiredateapp.services.exceptions.EntityNotFoundException;
 
-import pl.expiredateapp.repositories.RecipesRepository;
+import pl.expiredateapp.repository.RecipeRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class RecipeService {
 
-    private final RecipesRepository recipesRepository;
+    private final RecipeRepository recipesRepository;
 
     public List<RecipeDto> getAllRecipes(Long id) {
         return ((List<Recipe>) recipesRepository.findAll())
