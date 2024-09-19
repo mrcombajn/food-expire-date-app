@@ -1,12 +1,12 @@
-package pl.expiredateapp.entities;
+package pl.expiredateapp.repository.entity.product;
 
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import pl.expiredateapp.dtos.products.ProductDto;
+import pl.expiredateapp.controllers.dto.product.ProductDto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -32,7 +32,7 @@ public class Product {
     private String barCode;
 
     @Column(name="expire_date")
-    private Date expireDate;
+    private LocalDate expireDate;
 
     public Product(ProductDto productDto) {
         this.name = productDto.getName();

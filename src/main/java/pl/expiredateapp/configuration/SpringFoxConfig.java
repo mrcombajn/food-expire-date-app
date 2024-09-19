@@ -1,4 +1,4 @@
-package pl.expiredateapp.configurations;
+package pl.expiredateapp.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

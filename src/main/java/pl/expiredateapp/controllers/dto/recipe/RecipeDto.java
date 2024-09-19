@@ -1,4 +1,4 @@
-package pl.expiredateapp.dtos.recipes;
+package pl.expiredateapp.controllers.dto.recipe;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import lombok.SneakyThrows;
-import pl.expiredateapp.dtos.recipes.utils.Steps;
-import pl.expiredateapp.entities.Recipe;
+import pl.expiredateapp.controllers.dto.recipe.utils.Steps;
+import pl.expiredateapp.repository.entity.recipe.Recipe;
 
 import java.io.Serializable;
 import java.util.List;

@@ -1,16 +1,26 @@
-package pl.expiredateapp.entities;
+/**
+ * pl.expiredateapp.repository.entity.recipe is package for product entity definitions.
+ */
+package pl.expiredateapp.repository.entity.recipe;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 
-import lombok.*;
-import pl.expiredateapp.dtos.recipes.RecipeDto;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 
-import javax.xml.validation.Schema;
+import pl.expiredateapp.controllers.dto.recipe.RecipeDto;
+import pl.expiredateapp.repository.entity.product.Product;
+
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Recipe entity class.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -43,6 +53,10 @@ public class Recipe {
     )
     List<Product> products = new ArrayList<>();
 
+    /**
+     * Recipe constructor.
+     * @param recipeDto RecipeDto from endpoint.
+     */
     @SneakyThrows
     public Recipe(RecipeDto recipeDto) {
         ObjectMapper objectMapper = new ObjectMapper();

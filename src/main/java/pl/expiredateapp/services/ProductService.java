@@ -4,19 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import pl.expiredateapp.controllers.requests.product.ProductRequest;
-import pl.expiredateapp.dtos.products.ProductDto;
+import pl.expiredateapp.controllers.dto.product.ProductDto;
+import pl.expiredateapp.repository.entity.product.Product;
+import pl.expiredateapp.services.exceptions.EntityNotFoundException;
+import pl.expiredateapp.repository.ProductRepository;
 
-import pl.expiredateapp.entities.Product;
-import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
-
-import pl.expiredateapp.repositories.ProductRepository;
 import java.util.List;
-
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService {
+public final class ProductService {
 
     private final ProductRepository productRepository;
 
@@ -30,11 +28,11 @@ public class ProductService {
     }
 
     public ProductDto getProductById(ProductRequest productRequest) {
-        return new ProductDto(productRepository
-                .findById(productRequest.getId()).orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!")));
+        return new ProductDto(productRepository.findById(productRequest.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Cannot find product with given id!")));
     }
 
-    public void deleteProductById(Long id) {
-        productRepository.deleteById(id);
+    public void deleteProductById(ProductRequest productRequest) {
+        productRepository.deleteById(productRequest.getId());
     }
 }
