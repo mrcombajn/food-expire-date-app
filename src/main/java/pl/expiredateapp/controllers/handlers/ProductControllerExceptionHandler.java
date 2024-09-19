@@ -10,12 +10,15 @@ import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
 
 import java.util.Map;
 
+/**
+ * Exception handler for @ProductController class.
+ */
 @ControllerAdvice
-public class ProductControllerExceptionHandler extends ResponseEntityExceptionHandler {
+public final class ProductControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Object> handleMissingDatabaseProduct(EntityNotFoundException e) {
-        return new ResponseEntity<>(Map.of("error", e.getMessage()) , HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(Map.of("error", e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
 }

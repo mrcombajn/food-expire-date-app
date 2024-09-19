@@ -15,6 +15,9 @@ import pl.expiredateapp.controllers.requests.product.ProductRequest;
 import pl.expiredateapp.dtos.products.ProductDto;
 import pl.expiredateapp.services.ProductService;
 
+/**
+ * Controller which handles product operations.
+ */
 @RestController
 @RequestMapping("api")
 @RequiredArgsConstructor
@@ -54,7 +57,9 @@ public final class ProductController {
      * Adding product to database.
      * @param productDto Product to add.
      */
-    @PostMapping(value = "/product", consumes = "application/json")
+    @PostMapping(
+            value = "/product",
+            consumes = "application/json")
     void addProduct(@RequestBody ProductDto productDto) {
         productService.addProduct(productDto);
     }

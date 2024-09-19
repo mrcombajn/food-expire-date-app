@@ -1,6 +1,7 @@
 package pl.expiredateapp.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ import pl.expiredateapp.entities.Product;
 import pl.expiredateapp.entities.exceptions.EntityNotFoundException;
 import pl.expiredateapp.services.ProductService;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -41,14 +42,16 @@ class ProductControllerTest {
 
     @BeforeAll
     static void initialize() {
-        DTO.add(new ProductDto(new Product(1, "Chipsy", "Chipsy ziemniaczane", "123456789", new Date(2024, Calendar.JUNE, 28))));
-        DTO.add(new ProductDto(new Product(1, "Ser", "ser", "123456789", new Date(2023, Calendar.DECEMBER, 23))));
-        DTO.add(new ProductDto(new Product(1, "Chleb tostowy", "Chleb żytni", "123456789", new Date(2024, Calendar.FEBRUARY, 3))));
+        DTO.add(new ProductDto(new Product(1, "Chipsy", "Chipsy ziemniaczane", "123456789", LocalDate.of(2024, Month.JUNE, 28))));
+        DTO.add(new ProductDto(new Product(1, "Ser", "ser", "123456789", LocalDate.of(2023, Month.DECEMBER, 23))));
+        DTO.add(new ProductDto(new Product(1, "Chleb tostowy", "Chleb żytni", "123456789", LocalDate.of(2024, Month.FEBRUARY, 3))));
     }
 
 
     @Test
     void checkIfEndpointReturnsAllProductDto() throws Exception {
+        OBJECT_MAPPER.registerModule(new JavaTimeModule());
+
         //Mockito.when -> look at static import
         when(productService.getAllProducts())
                 .thenReturn(DTO);

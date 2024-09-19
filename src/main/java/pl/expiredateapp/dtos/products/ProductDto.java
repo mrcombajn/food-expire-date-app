@@ -7,6 +7,7 @@ import lombok.Setter;
 import pl.expiredateapp.entities.Product;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -21,7 +22,7 @@ public class ProductDto implements Serializable {
 
     private String barCode;
 
-    private Date expireDate;
+    private LocalDate expireDate;
 
     public ProductDto(Product product) {
         this.id = product.getId();
