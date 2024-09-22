@@ -1,3 +1,6 @@
+/**
+ * pl.expiredateapp.controllers is a package for controllers tests.
+ */
 package pl.expiredateapp.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,13 +15,15 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.expiredateapp.controllers.requests.product.ProductRequest;
 import pl.expiredateapp.controllers.dto.product.ProductDto;
-import pl.expiredateapp.repository.entity.product.Product;
 import pl.expiredateapp.services.exceptions.EntityNotFoundException;
 import pl.expiredateapp.services.ProductService;
 
-import java.time.LocalDate;
-import java.time.Month;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,6 +31,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Product controller tests.
+ */
 @WebMvcTest(ProductController.class)
 @DirtiesContext
 class ProductControllerTest {
@@ -36,17 +44,14 @@ class ProductControllerTest {
     @MockBean
     private ProductService productService;
 
-    private final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private static final ArrayList<ProductDto> DTO = new ArrayList<>();
 
     @BeforeAll
     static void initialize() {
-        DTO.add(new ProductDto(new Product(1, "Chipsy", "Chipsy ziemniaczane", "123456789", LocalDate.of(2024, Month.JUNE, 28))));
-        DTO.add(new ProductDto(new Product(1, "Ser", "ser", "123456789", LocalDate.of(2023, Month.DECEMBER, 23))));
-        DTO.add(new ProductDto(new Product(1, "Chleb tostowy", "Chleb żytni", "123456789", LocalDate.of(2024, Month.FEBRUARY, 3))));
+        LoadDtoFromFile();
     }
-
 
     @Test
     void checkIfEndpointReturnsAllProductDto() throws Exception {
@@ -85,7 +90,21 @@ class ProductControllerTest {
     private String asJsonString(Object object) throws RuntimeException {
         try {
             return OBJECT_MAPPER.writeValueAsString(object);
-        } catch(Exception e) {
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+    }
+
+    private static void LoadDtoFromFile() {
+        try {
+            InputStream inputStream = new FileInputStream(
+                    Objects.requireNonNull(
+                            ProductControllerTest.class.getClassLoader().getResource("databaseObjects.json").getFile()));
+
+            // Spróbować odpalić ten parserek
+            DTO.addAll(OBJECT_MAPPER.createParser(inputStream).readValueAs(ArrayList.class).stream().map(o -> (ProductDto)o).collect(Collectors.toList()));
+
+        } catch (Exception ex){
             throw new RuntimeException();
         }
     }
