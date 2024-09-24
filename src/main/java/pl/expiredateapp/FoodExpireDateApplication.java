@@ -1,8 +1,7 @@
-/**
- * pl.expiredateapp is a main package of Food Expire Date Application.
- */
 package pl.expiredateapp;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Main application class.
  */
 @SpringBootApplication
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FoodExpireDateApplication {
 
     /**
