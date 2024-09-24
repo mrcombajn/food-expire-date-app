@@ -1,6 +1,3 @@
-/**
- * pl.expiredateapp.controllers is a package for controller's operations.
- */
 package pl.expiredateapp.controllers;
 
 import lombok.RequiredArgsConstructor;
@@ -18,9 +15,6 @@ import pl.expiredateapp.controllers.requests.product.ProductRequest;
 import pl.expiredateapp.controllers.dto.product.ProductDto;
 import pl.expiredateapp.services.ProductService;
 
-/**
- * Controller which handles product operations.
- */
 @RestController
 @RequestMapping("api")
 @RequiredArgsConstructor
@@ -42,7 +36,8 @@ public final class ProductController {
     /**
      * Product from database.
      * @param productRequest Request for a product.
-     * @return Try to get product from database, otherwise it will return 400 status.
+     * @return Try to get product from database,
+     * otherwise it will return 400 status.
      */
     @GetMapping(
             value = "/product",
