@@ -20,6 +20,9 @@ import pl.expiredateapp.services.ProductService;
 @RequiredArgsConstructor
 public final class ProductController {
 
+    /**
+     * Autowired product service.
+     */
     private final ProductService productService;
 
     /**

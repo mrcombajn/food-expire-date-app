@@ -1,10 +1,15 @@
-/**
- * pl.expiredateapp.repository.entity.recipe is package for product entity definitions.
- */
 package pl.expiredateapp.repository.entity.recipe;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,9 +23,6 @@ import pl.expiredateapp.repository.entity.product.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Recipe entity class.
- */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,22 +31,40 @@ import java.util.List;
 @Table(name = "recipes")
 public class Recipe {
 
+    /**
+     * Recipe entity ID.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    /**
+     * Recipe entity name.
+     */
     @Column(name="name")
     private String name;
 
+    /**
+     * Recipe entity ingredients.
+     */
     @Column(name="ingredients")
     private String ingredients;
 
+    /**
+     * Recipe entity description.
+     */
     @Column(name="description")
     private String description;
 
+    /**
+     * Recipe entity steps.
+     */
     @Column(name="steps")
     private String steps;
 
+    /**
+     * Recipe entity products.
+     */
     @ManyToMany
     @JoinTable(
             name = "recipes_product",
@@ -58,7 +78,7 @@ public class Recipe {
      * @param recipeDto RecipeDto from endpoint.
      */
     @SneakyThrows
-    public Recipe(RecipeDto recipeDto) {
+    public Recipe(final RecipeDto recipeDto) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         this.name = recipeDto.getName();
@@ -66,4 +86,5 @@ public class Recipe {
         this.steps = objectMapper.writeValueAsString(recipeDto.getSteps());
         this.description = recipeDto.getDescription();
     }
+
 }

@@ -1,6 +1,3 @@
-/**
- * pl.expiredateapp.dto.product is a package for product dto definitions.
- */
 package pl.expiredateapp.controllers.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,26 +9,33 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.Getter;
 import lombok.Setter;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import pl.expiredateapp.repository.entity.product.Product;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-/**
- * ProductDto class.
- */
 @Getter
 @Setter
 public final class ProductDto implements Serializable {
 
+    /**
+     * Product DTO ID.
+     */
     private int id;
 
+    /**
+     * Product DTO name.
+     */
     private String name;
 
+    /**
+     * Product DTO description.
+     */
     private String description;
 
+    /**
+     * Product DTO barcode.
+     */
     private String barCode;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -43,7 +47,7 @@ public final class ProductDto implements Serializable {
      * ProductDto constructor.
      * @param product Product entity from database.
      */
-    public ProductDto(Product product) {
+    public ProductDto(final Product product) {
         this.id = product.getId();
         this.name = product.getName();
         this.description = product.getDescription();

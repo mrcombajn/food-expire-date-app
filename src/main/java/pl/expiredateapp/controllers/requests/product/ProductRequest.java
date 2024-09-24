@@ -1,6 +1,3 @@
-/**
- * pl.expiredateapp.controllers.requests.product is a package for controller's product definitions.
- */
 package pl.expiredateapp.controllers.requests.product;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -8,16 +5,19 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-/**
- * Product request class.
- */
 @Getter
 @Setter
 @RequiredArgsConstructor
 public class ProductRequest {
 
+    /**
+     * Product request id.
+     */
     private long id;
 
+    /**
+     * Product request barcode.
+     */
     private String barcode;
 
     /**
@@ -25,7 +25,7 @@ public class ProductRequest {
      * @param id ID of product.
      */
     @JsonCreator
-    public ProductRequest(long id) {
+    public ProductRequest(final long id) {
         this.id = id;
     }
 
@@ -34,7 +34,8 @@ public class ProductRequest {
      * @param barcode Barcode of product.
      */
     @JsonCreator
-    public ProductRequest(String barcode) {
+    public ProductRequest(final String barcode) {
         this.barcode = barcode;
     }
+
 }

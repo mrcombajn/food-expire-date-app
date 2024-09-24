@@ -8,11 +8,21 @@ import pl.expiredateapp.repository.entity.product.Product;
 @Setter
 public class RecipeProductDto {
 
+    /**
+     * Recipe Product DTO id.
+     */
     private int id;
 
+    /**
+     * Recipe product DTO name.
+     */
     private String name;
 
-    public RecipeProductDto(Product product) {
+    /**
+     * Recipe product DTO constructor.
+     * @param product Product entity from database.
+     */
+    public RecipeProductDto(final Product product) {
         this.id = product.getId();
         this.name = product.getName();
     }
