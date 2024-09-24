@@ -3,6 +3,8 @@
  */
 package pl.expiredateapp.controllers.dto.product;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -10,10 +12,12 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.expiredateapp.repository.entity.product.Product;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * ProductDto class.
@@ -32,6 +36,7 @@ public final class ProductDto implements Serializable {
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate expireDate;
 
     /**
@@ -45,4 +50,12 @@ public final class ProductDto implements Serializable {
         this.barCode = product.getBarCode();
         this.expireDate = product.getExpireDate();
     }
+
+    /**
+     * ProductDto default constructor.
+     */
+    @JsonCreator
+    public  ProductDto() {
+    }
+
 }

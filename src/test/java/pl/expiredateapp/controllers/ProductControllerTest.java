@@ -21,9 +21,7 @@ import pl.expiredateapp.services.ProductService;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -99,11 +97,11 @@ class ProductControllerTest {
         try {
             InputStream inputStream = new FileInputStream(
                     Objects.requireNonNull(
-                            ProductControllerTest.class.getClassLoader().getResource("databaseObjects.json").getFile()));
-
-            // Spróbować odpalić ten parserek
-            DTO.addAll(OBJECT_MAPPER.createParser(inputStream).readValueAs(ArrayList.class).stream().map(o -> (ProductDto)o).collect(Collectors.toList()));
-
+                            Objects.requireNonNull(
+                                    ProductControllerTest.class.getClassLoader().getResource("databaseObjects.json")).getFile()));
+            for (var object : OBJECT_MAPPER.readValue(inputStream, ArrayList.class)) {
+                DTO.add(OBJECT_MAPPER.convertValue(object, ProductDto.class));
+            }
         } catch (Exception ex){
             throw new RuntimeException();
         }
