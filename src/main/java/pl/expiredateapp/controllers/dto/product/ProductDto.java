@@ -38,6 +38,9 @@ public final class ProductDto implements Serializable {
      */
     private String barCode;
 
+    /**
+     * Product DTO expire date.
+     */
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(pattern = "dd/MM/yyyy")

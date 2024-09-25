@@ -11,7 +11,8 @@ import pl.expiredateapp.services.exceptions.EntityNotFoundException;
 import java.util.Map;
 
 @ControllerAdvice
-public final class ProductControllerExceptionHandler extends ResponseEntityExceptionHandler {
+public final class ProductControllerExceptionHandler
+        extends ResponseEntityExceptionHandler {
 
     /**
      * Exception handler for EntityNotFoundException.

@@ -1,6 +1,3 @@
-/**
- * pl.expiredateapp.controllers is a package for controllers tests.
- */
 package pl.expiredateapp.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,9 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * Product controller tests.
- */
 @WebMvcTest(ProductController.class)
 @DirtiesContext
 class ProductControllerTest {

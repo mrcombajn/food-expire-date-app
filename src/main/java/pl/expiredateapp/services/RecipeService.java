@@ -4,17 +4,22 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import pl.expiredateapp.controllers.dto.recipe.RecipeDto;
+import pl.expiredateapp.repository.entity.product.Product;
 import pl.expiredateapp.repository.entity.recipe.Recipe;
 import pl.expiredateapp.repository.RecipeRepository;
 import pl.expiredateapp.services.exceptions.EntityNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class RecipeService {
 
+    /**
+     * Autowired Recipe Repository.
+     */
     private final RecipeRepository recipesRepository;
 
     /**
@@ -34,10 +39,13 @@ public class RecipeService {
      * @return Recipe with given id
      * or @EntityNotFoundException if recipe doesn't exist.
      */
-    public Recipe getRecipeById(Long id) {
-        return recipesRepository
-                .findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!"));
+    public Recipe getRecipeById(final Long id) {
+        Optional<Recipe> recipe = recipesRepository.findById(id);
+
+        return recipe
+                .orElseThrow(
+                        () -> new EntityNotFoundException(
+                                "Cannot find entity with given id!"));
     }
 
 }

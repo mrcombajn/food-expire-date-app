@@ -27,6 +27,7 @@ public class ProductRequest {
     @JsonCreator
     public ProductRequest(final long id) {
         this.id = id;
+        this.barcode = null;
     }
 
     /**
@@ -35,6 +36,7 @@ public class ProductRequest {
      */
     @JsonCreator
     public ProductRequest(final String barcode) {
+        this.id = -1;
         this.barcode = barcode;
     }
 

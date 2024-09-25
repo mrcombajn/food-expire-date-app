@@ -10,12 +10,16 @@ import pl.expiredateapp.repository.ProductRepository;
 import pl.expiredateapp.services.exceptions.EntityNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public final class ProductService {
 
+    /**
+     * Autowired Product Repository.
+     */
     private final ProductRepository productRepository;
 
     /**
@@ -45,11 +49,19 @@ public final class ProductService {
      * EntityNotFoundException if product doesn't exist.
      */
     public ProductDto getProductById(final ProductRequest productRequest) {
-        return new ProductDto(productRepository.findById(productRequest.getId())
+        Optional<Product> dto = productRepository
+                .findById(productRequest.getId());
+
+        return new ProductDto(dto
                 .orElseThrow(
-                        () -> new EntityNotFoundException("Cannot find product with given id!")));
+                        () -> new EntityNotFoundException(
+                                "Cannot find product with given id!")));
     }
 
+    /**
+     * Deletes product from database by id.
+     * @param productRequest ProductRequest to delete.
+     */
     public void deleteProductById(final ProductRequest productRequest) {
         productRepository.deleteById(productRequest.getId());
     }

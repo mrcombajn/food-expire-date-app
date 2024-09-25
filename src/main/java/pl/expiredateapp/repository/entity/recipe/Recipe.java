@@ -82,8 +82,10 @@ public class Recipe {
         ObjectMapper objectMapper = new ObjectMapper();
 
         this.name = recipeDto.getName();
-        this.ingredients = objectMapper.writeValueAsString(recipeDto.getIngredients());
-        this.steps = objectMapper.writeValueAsString(recipeDto.getSteps());
+        this.ingredients = objectMapper
+                .writeValueAsString(recipeDto.getIngredients());
+        this.steps = objectMapper
+                .writeValueAsString(recipeDto.getSteps());
         this.description = recipeDto.getDescription();
     }
 
