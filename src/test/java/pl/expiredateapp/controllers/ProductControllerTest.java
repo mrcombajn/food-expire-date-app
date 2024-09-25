@@ -36,19 +36,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DirtiesContext
 class ProductControllerTest {
 
+    /**
+     * Mock MVC.
+     */
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * Mocked Product service.
+     */
     @MockBean
     private ProductService productService;
 
+    /**
+     * Object mapper for objects serialization/deserialization.
+     */
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
+    /**
+     * List of Data Transfer Objects expected from response.
+     */
     private static final ArrayList<ProductDto> DTO = new ArrayList<>();
 
     @BeforeAll
     static void initialize() {
-        LoadDtoFromFile();
+        loadDtoFromFile();
     }
 
     @Test
@@ -93,17 +105,19 @@ class ProductControllerTest {
         }
     }
 
-    private static void LoadDtoFromFile() {
-        try {
-            InputStream inputStream = new FileInputStream(
-                    Objects.requireNonNull(
-                            Objects.requireNonNull(
-                                    ProductControllerTest.class.getClassLoader().getResource("databaseObjects.json")).getFile()));
+    private static void loadDtoFromFile() {
+        String url = Objects.requireNonNull(
+                ProductControllerTest.class
+                        .getClassLoader()
+                        .getResource("databaseObjects.json"))
+                .getFile();
+
+        try (InputStream inputStream = new FileInputStream(url)){
             for (var object : OBJECT_MAPPER.readValue(inputStream, ArrayList.class)) {
                 DTO.add(OBJECT_MAPPER.convertValue(object, ProductDto.class));
             }
         } catch (Exception ex){
-            throw new RuntimeException();
+            throw new RuntimeException(ex.getMessage());
         }
     }
 }

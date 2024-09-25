@@ -41,25 +41,25 @@ public class Recipe {
     /**
      * Recipe entity name.
      */
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     /**
      * Recipe entity ingredients.
      */
-    @Column(name="ingredients")
+    @Column(name = "ingredients")
     private String ingredients;
 
     /**
      * Recipe entity description.
      */
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
     /**
      * Recipe entity steps.
      */
-    @Column(name="steps")
+    @Column(name = "steps")
     private String steps;
 
     /**
@@ -71,7 +71,7 @@ public class Recipe {
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    List<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     /**
      * Recipe constructor.

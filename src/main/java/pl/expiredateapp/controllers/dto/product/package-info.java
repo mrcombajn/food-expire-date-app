@@ -1,4 +1,5 @@
 /**
- * pl.expiredateapp.controllers.dto.product is a package for product's data transfer objects.
+ * pl.expiredateapp.controllers.dto.product
+ * Package for product's data transfer objects.
  */
 package pl.expiredateapp.controllers.dto.product;

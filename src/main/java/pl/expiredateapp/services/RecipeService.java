@@ -1,6 +1,3 @@
-/**
- * pl.expiredateapp.services is a package for service classes.
- */
 package pl.expiredateapp.services;
 
 import lombok.RequiredArgsConstructor;
@@ -14,9 +11,6 @@ import pl.expiredateapp.services.exceptions.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Service for recipes.
- */
 @Service
 @RequiredArgsConstructor
 public class RecipeService {
@@ -37,10 +31,13 @@ public class RecipeService {
     /**
      * Gets recipe by id.
      * @param id Recipe id.
-     * @return Recipe with given id or @EntityNotFoundException if recipe doesn't exist.
+     * @return Recipe with given id
+     * or @EntityNotFoundException if recipe doesn't exist.
      */
     public Recipe getRecipeById(Long id) {
-        return recipesRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!"));
+        return recipesRepository
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Cannot find entity with given id!"));
     }
 
 }

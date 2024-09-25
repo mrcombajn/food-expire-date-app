@@ -1,4 +1,5 @@
 /**
- * pl.expiredateapp.repository.entity.product is a package for Product entity classes.
+ * pl.expiredateapp.repository.entity.product
+ * A package for Product entity classes.
  */
 package pl.expiredateapp.repository.entity.product;
