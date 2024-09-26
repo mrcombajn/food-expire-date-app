@@ -67,12 +67,14 @@ class ProductControllerTest {
 
         //MockMvcRequestBuilders.get -> look at static import
         //MockMvcResultHandlers.print -> look at static import
-        //MockMvcResultMatchers.status -> look at static import, we expect that the test return 200 status code
+        //MockMvcResultMatchers.status ->
+        // look at static import, we expect that the test return 200 status code
         this.mockMvc
                 .perform(get("/api/products"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().json(OBJECT_MAPPER.writeValueAsString(DTO)));
+                .andExpect(
+                        content().json(OBJECT_MAPPER.writeValueAsString(DTO)));
     }
 
     @Test
@@ -82,7 +84,8 @@ class ProductControllerTest {
         productRequest.setBarcode("123456789");
 
         when(productService.getProductById(productRequest))
-                .thenThrow(new EntityNotFoundException("Cannot find product with given id!"));
+                .thenThrow(
+                        new EntityNotFoundException("Cannot find product with given id!"));
 
         this.mockMvc
                 .perform(get("/api/product/url")
@@ -91,7 +94,7 @@ class ProductControllerTest {
                 .andExpect(status().is4xxClientError());
     }
 
-    private String asJsonString(Object object) throws RuntimeException {
+    private String asJsonString(final Object object) throws RuntimeException {
         try {
             return OBJECT_MAPPER.writeValueAsString(object);
         } catch (Exception e) {
@@ -106,9 +109,10 @@ class ProductControllerTest {
                         .getResource("databaseObjects.json"))
                 .getFile();
 
-        try (InputStream inputStream = new FileInputStream(url)){
+        try (InputStream inputStream = new FileInputStream(url)) {
             for (var object : OBJECT_MAPPER.readValue(inputStream, ArrayList.class)) {
-                DTO.add(OBJECT_MAPPER.convertValue(object, ProductDto.class));
+                DTO.add(
+                    OBJECT_MAPPER.convertValue(object, ProductDto.class));
             }
         } catch (Exception ex){
             throw new RuntimeException(ex.getMessage());
