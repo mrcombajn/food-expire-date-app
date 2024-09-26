@@ -1,6 +1,5 @@
 package pl.expiredateapp.controllers.requests.product;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -19,25 +18,5 @@ public class ProductRequest {
      * Product request barcode.
      */
     private String barcode;
-
-    /**
-     * Product request constructor.
-     * @param id ID of product.
-     */
-    @JsonCreator
-    public ProductRequest(final long id) {
-        this.id = id;
-        this.barcode = null;
-    }
-
-    /**
-     * Product request constructor.
-     * @param barcode Barcode of product.
-     */
-    @JsonCreator
-    public ProductRequest(final String barcode) {
-        this.id = -1;
-        this.barcode = barcode;
-    }
 
 }

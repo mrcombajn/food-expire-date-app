@@ -55,7 +55,7 @@ class ProductControllerTest {
     /**
      * Expected message for EntityNotFoundException.
      */
-    private static final String message = "Cannot find product with given id!";
+    private static final String MESSAGE = "Cannot find product with given id!";
 
     @BeforeAll
     static void initialize() {
@@ -90,7 +90,7 @@ class ProductControllerTest {
 
         when(productService.getProductById(productRequest))
             .thenThrow(
-                new EntityNotFoundException(message));
+                new EntityNotFoundException(MESSAGE));
 
         this.mockMvc
                 .perform(get("/api/product/url")
@@ -115,7 +115,8 @@ class ProductControllerTest {
                 .getFile();
 
         try (InputStream inputStream = new FileInputStream(url)) {
-            var arrayList = OBJECT_MAPPER.readValue(inputStream, ArrayList.class);
+            var arrayList = OBJECT_MAPPER
+                    .readValue(inputStream, ArrayList.class);
 
             for (var object : arrayList) {
                 DTO.add(
