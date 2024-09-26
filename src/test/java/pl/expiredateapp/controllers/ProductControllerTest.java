@@ -12,13 +12,13 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.expiredateapp.controllers.requests.product.ProductRequest;
 import pl.expiredateapp.controllers.dto.product.ProductDto;
-import pl.expiredateapp.repository.entity.product.Product;
 import pl.expiredateapp.services.exceptions.EntityNotFoundException;
 import pl.expiredateapp.services.ProductService;
 
-import java.time.LocalDate;
-import java.time.Month;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -30,23 +30,37 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DirtiesContext
 class ProductControllerTest {
 
+    /**
+     * Mock MVC.
+     */
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * Mocked Product service.
+     */
     @MockBean
     private ProductService productService;
 
-    private final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    /**
+     * Object mapper for objects serialization/deserialization.
+     */
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
+    /**
+     * List of Data Transfer Objects expected from response.
+     */
     private static final ArrayList<ProductDto> DTO = new ArrayList<>();
+
+    /**
+     * Expected message for EntityNotFoundException.
+     */
+    private static final String MESSAGE = "Cannot find product with given id!";
 
     @BeforeAll
     static void initialize() {
-        DTO.add(new ProductDto(new Product(1, "Chipsy", "Chipsy ziemniaczane", "123456789", LocalDate.of(2024, Month.JUNE, 28))));
-        DTO.add(new ProductDto(new Product(1, "Ser", "ser", "123456789", LocalDate.of(2023, Month.DECEMBER, 23))));
-        DTO.add(new ProductDto(new Product(1, "Chleb tostowy", "Chleb żytni", "123456789", LocalDate.of(2024, Month.FEBRUARY, 3))));
+        loadDtoFromFile();
     }
-
 
     @Test
     void checkIfEndpointReturnsAllProductDto() throws Exception {
@@ -58,12 +72,14 @@ class ProductControllerTest {
 
         //MockMvcRequestBuilders.get -> look at static import
         //MockMvcResultHandlers.print -> look at static import
-        //MockMvcResultMatchers.status -> look at static import, we expect that the test return 200 status code
+        //MockMvcResultMatchers.status ->
+        // look at static import, we expect that the test return 200 status code
         this.mockMvc
                 .perform(get("/api/products"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().json(OBJECT_MAPPER.writeValueAsString(DTO)));
+                .andExpect(
+                        content().json(OBJECT_MAPPER.writeValueAsString(DTO)));
     }
 
     @Test
@@ -73,7 +89,8 @@ class ProductControllerTest {
         productRequest.setBarcode("123456789");
 
         when(productService.getProductById(productRequest))
-                .thenThrow(new EntityNotFoundException("Cannot find product with given id!"));
+            .thenThrow(
+                new EntityNotFoundException(MESSAGE));
 
         this.mockMvc
                 .perform(get("/api/product/url")
@@ -82,11 +99,31 @@ class ProductControllerTest {
                 .andExpect(status().is4xxClientError());
     }
 
-    private String asJsonString(Object object) throws RuntimeException {
+    private String asJsonString(final Object object) throws RuntimeException {
         try {
             return OBJECT_MAPPER.writeValueAsString(object);
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException();
+        }
+    }
+
+    private static void loadDtoFromFile() {
+        String url = Objects.requireNonNull(
+                ProductControllerTest.class
+                        .getClassLoader()
+                        .getResource("databaseObjects.json"))
+                .getFile();
+
+        try (InputStream inputStream = new FileInputStream(url)) {
+            var arrayList = OBJECT_MAPPER
+                    .readValue(inputStream, ArrayList.class);
+
+            for (var object : arrayList) {
+                DTO.add(
+                    OBJECT_MAPPER.convertValue(object, ProductDto.class));
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
         }
     }
 }

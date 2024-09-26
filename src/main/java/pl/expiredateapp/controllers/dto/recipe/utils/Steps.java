@@ -8,5 +8,9 @@ import java.util.List;
 @Getter
 @Setter
 public class Steps {
-    List<String> steps;
+
+    /**
+     * Steps.
+     */
+    private List<String> steps;
 }
