@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@SuppressWarnings({"PMD", "checkstyle:hideutilityclassconstructor"})
 public class FoodExpireDateApplication {
 
     /**
