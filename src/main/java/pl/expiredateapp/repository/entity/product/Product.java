@@ -43,7 +43,7 @@ public class Product {
     /**
      * Product entity description.
      */
-    @Column(name = "description")
+    @Column(name = "product_description")
     private String description;
 
     /**

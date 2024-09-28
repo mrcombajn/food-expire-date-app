@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS product (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(50) NOT NULL,
-    description VARCHAR(512) DEFAULT '',
+    product_description VARCHAR(512) DEFAULT '',
     bar_code VARCHAR(255) NOT NULL,
     expire_date DATE NOT NULL
 );
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS recipes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     recipe_name VARCHAR(50) NOT NULL,
     ingredients VARCHAR(512) NOT NULL,
-    description VARCHAR(255) DEFAULT '',
+    recipe_description VARCHAR(255) DEFAULT '',
     steps VARCHAR(1024)
 );
 
