@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet} from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default function Product(props) {
   return (
@@ -15,18 +15,18 @@ export default function Product(props) {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     padding: 15,
     borderRadius: 10,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 20, 
+    marginBottom: 20,
   },
   itemLeft: {
-    flexDirection: "row",
-    alignItems: "center",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap'
   },
   square: {
     width: 24,
@@ -45,5 +45,5 @@ const styles = StyleSheet.create({
     borderColor: '#55BCF6',
     borderWidth: 2,
     borderRadius: 5
-  },
-});
+  }
+})
