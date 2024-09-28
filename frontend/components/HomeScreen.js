@@ -12,19 +12,19 @@ import Product from './Product.js'
 export default function HomeScreen (props) {
   const [products, setProducts] = React.useState([])
 
-   const getProducts = () => {
-       axios.get('http://10.0.2.2:8080/product')
-           .then(function (response) {
-               setProducts(response.data)
-           })
-           .catch(function (error) {
-               console.log(error.response.data)
-           })
+  const getProducts = () => {
+    axios.get('http://10.0.2.2:8080/product')
+      .then(function (response) {
+        setProducts(response.data)
+      })
+      .catch(function (error) {
+        console.log(error.response.data)
+      })
    }
 
-   useEffect(() => {
-       getProducts()
-   }, [])
+  useEffect(() => {
+      getProducts()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -35,7 +35,7 @@ export default function HomeScreen (props) {
           }}
         >
         <View style={styles.productsWrapper}>
-            <View style={styles.items}>
+          <View style={styles.items}>
               {products.map((item, index) => {
                 return (
                   <TouchableOpacity
@@ -43,9 +43,9 @@ export default function HomeScreen (props) {
                   >
                     <Product data={item} />
                   </TouchableOpacity>
-                );
+                )
               })}
-            </View>
+          </View>
         </View>
         </ScrollView>
       </View>
@@ -57,10 +57,10 @@ export default function HomeScreen (props) {
         </TouchableOpacity>
         <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
-          </View>
-          <View style={styles.addWrapper}>
+        </View>
+        <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
-          </View>
+        </View>
       </View>
     </View>
   )
@@ -100,6 +100,6 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   addText: {
-      color: '#ebf7ee'
+    color: '#ebf7ee'
   }
-});
+})
