@@ -37,7 +37,7 @@ public class Product {
     /**
      * Product entity name.
      */
-    @Column(name = "name")
+    @Column(name = "product_name")
     private String name;
 
     /**
