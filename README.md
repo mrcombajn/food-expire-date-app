@@ -18,27 +18,27 @@ architecture. Frontend side created in React Native, backend is based on
 Java with Spring framework.
 
 
-## Get Started 
+## Get Started
 
-#### WIP
+### WIP
 
 
 ## Features / Roadmap
 
 
-#### Endpoints:
-- [x] Create an endpoint for getting all available products
-- [x] Create an endpoint for getting/deleting product by id.
-- [ ] Create an endpoint for getting all available recipes
-- [ ] Create an endpoint for getting/deleting recipe by id.
-- [ ] Create an endpoint for modifying product by id.
+### Endpoints
+- [x] Create an endpoint for getting all available products.
+- [x] Create an endpoint for getting/deleting product by ID.
+- [ ] Create an endpoint for getting all available recipes.
+- [ ] Create an endpoint for getting/deleting recipe by ID.
+- [ ] Create an endpoint for modifying product by ID.
 
-#### Environment:
-- [x] Add readme
-- [x] Automate build process:
-    - [x] Build on PR push
-    - [ ] Add docker building
-    - [ ] Automatic releases
+#### Environment
+- [x] Add readme.
+  - [x] Automate build process:
+        - [x] Build on PR push.
+        - [ ] Add docker building.
+        - [ ] Automatic releases.
 
 ## Screenshots
 
