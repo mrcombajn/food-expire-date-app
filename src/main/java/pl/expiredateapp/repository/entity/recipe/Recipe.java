@@ -41,7 +41,7 @@ public class Recipe {
     /**
      * Recipe entity name.
      */
-    @Column(name = "name")
+    @Column(name = "recipe_name")
     private String name;
 
     /**
@@ -53,7 +53,7 @@ public class Recipe {
     /**
      * Recipe entity description.
      */
-    @Column(name = "description")
+    @Column(name = "recipe_description")
     private String description;
 
     /**
