@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Ser",
+    "description": "Ser",
+    "barCode": "123456789",
+    "expireDate":"23/12/2024"
+  },
+  {
+    "id": "2",
+    "name": "Chipsy",
+    "description": "Chipsy ziemniaczane",
+    "barCode": "123456789",
+    "expireDate":"28/06/2023"
+  },
+  {
+    "id": "2",
+    "name": "Chleb tostowy",
+    "description": "Chleb żytni",
+    "barCode": "123456789",
+    "expireDate":"03/02/2024"
+  }
+]
