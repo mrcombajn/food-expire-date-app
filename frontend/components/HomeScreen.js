@@ -20,10 +20,10 @@ export default function HomeScreen (props) {
       .catch(function (error) {
         console.log(error.response.data)
       })
-   }
+  }
 
   useEffect(() => {
-      getProducts()
+    getProducts()
   }, [])
 
   return (
@@ -31,11 +31,11 @@ export default function HomeScreen (props) {
       <View>
         <ScrollView
           contentContainerStyle={{
-            flexGrow: 1,
+            flexGrow: 1
           }}
         >
-        <View style={styles.productsWrapper}>
-          <View style={styles.items}>
+          <View style={styles.productsWrapper}>
+            <View style={styles.items}>
               {products.map((item, index) => {
                 return (
                   <TouchableOpacity
@@ -45,8 +45,8 @@ export default function HomeScreen (props) {
                   </TouchableOpacity>
                 )
               })}
+            </View>
           </View>
-        </View>
         </ScrollView>
       </View>
       <View style={styles.snackBar}>
@@ -56,10 +56,10 @@ export default function HomeScreen (props) {
           </View>
         </TouchableOpacity>
         <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
+          <Text style={styles.addText}>+</Text>
         </View>
         <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
+          <Text style={styles.addText}>+</Text>
         </View>
       </View>
     </View>

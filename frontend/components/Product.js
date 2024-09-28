@@ -5,10 +5,10 @@ export default function Product (props) {
   return (
     <View style={styles.item}>
       <View style={styles.itemLeft}>
-        <View style={styles.square}/>
+        <View style={styles.square} />
         <Text style={styles.itemText}>{props.data.name}</Text>
       </View>
-      <View style={styles.circular}/>
+      <View style={styles.circular} />
     </View>
   )
 }

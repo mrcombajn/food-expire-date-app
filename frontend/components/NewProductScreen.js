@@ -8,24 +8,23 @@ import {
 } from 'react-native'
 
 export default class NewProduct extends Component {
-
   addProduct = () => {
   }
 
-  render() {
+  render () {
     return (
-        <View style={styles.container}>
-            <TextInput style={styles.input} placeholder={'Product name'}></TextInput>
-            <TextInput style={styles.input} placeholder={'Product description'}></TextInput>
-            <TextInput style={styles.input} placeholder={'Date (DD/MM/YYYY) format'}></TextInput>
-            <TextInput style={styles.input} placeholder={'Bar code'}></TextInput>
-            <TouchableOpacity style={styles.addButton}>
-                <Text style={styles.addProductText}>Add new product</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.addButton}>
-                <Text style={styles.addProductText}>Add by barcode</Text>
-            </TouchableOpacity>
-        </View>
+      <View style={styles.container}>
+        <TextInput style={styles.input} placeholder='Product name' />
+        <TextInput style={styles.input} placeholder='Product description' />
+        <TextInput style={styles.input} placeholder='Date (DD/MM/YYYY) format' />
+        <TextInput style={styles.input} placeholder='Bar code' />
+        <TouchableOpacity style={styles.addButton}>
+          <Text style={styles.addProductText}>Add new product</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.addButton}>
+          <Text style={styles.addProductText}>Add by barcode</Text>
+        </TouchableOpacity>
+      </View>
     )
   }
 }
