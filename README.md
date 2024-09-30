@@ -47,4 +47,6 @@ Java with Spring framework.
 
 ## Contact
 
-Created by [Mateusz Ostrowski (@mrcombajn)](https://github.com/mrcombajn) - feel free to contact me!
+Created by:
+[Mateusz Ostrowski (@mrcombajn)](https://github.com/mrcombajn)
+[Szymon Paluszewski (@SayyRacing)](https://github.com/SayyRacing) - feel free to contact us!
