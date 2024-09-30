@@ -18,6 +18,7 @@ import pl.expiredateapp.services.ProductService;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static org.mockito.Mockito.when;
@@ -80,6 +81,17 @@ class ProductControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(
                         content().json(OBJECT_MAPPER.writeValueAsString(DTO)));
+    }
+
+    @Test
+    void checkIf4xxStatusIsReturnedWhenDbNotCotainsItems() throws Exception {
+        when(productService.getAllProducts())
+                .thenReturn(List.of());
+
+        this.mockMvc
+                .perform(get("/api/products"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
