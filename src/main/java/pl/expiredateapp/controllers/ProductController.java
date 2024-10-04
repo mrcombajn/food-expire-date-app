@@ -38,11 +38,9 @@ public final class ProductController {
     public ResponseEntity<Object> getProducts() {
         List<ProductDto> dto = productService.getAllProducts();
 
-        return !dto.isEmpty() ?
-                ResponseEntity.ok(productService.getAllProducts()) :
-                ResponseEntity
-                        .status(HttpStatusCode.valueOf(404))
-                        .build();
+        return !dto.isEmpty()
+                ? ResponseEntity.ok(productService.getAllProducts())
+                : ResponseEntity.notFound().build();
     }
 
     /**
