@@ -1,0 +1,21 @@
+---
+services:
+  food-expire-date-application:
+    image: openjdk:17-jdk-slim
+    ports:
+      - 8000:8000
+    working_dir: /backend
+    volumes:
+      - ./:/app
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_DB: test_db
+      
+  food-expire-date-application-db:
+    image: mysql
+    #volumes: 
+    #  - database:/data/db
+    ports:
+      - 27017:27017
