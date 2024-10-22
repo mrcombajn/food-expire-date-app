@@ -15,6 +15,8 @@ import pl.expiredateapp.controllers.requests.product.ProductRequest;
 import pl.expiredateapp.controllers.dto.product.ProductDto;
 import pl.expiredateapp.services.ProductService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api")
 @RequiredArgsConstructor
@@ -33,7 +35,11 @@ public final class ProductController {
             value = "/products",
             produces = "application/json")
     public ResponseEntity<Object> getProducts() {
-        return ResponseEntity.ok(productService.getAllProducts());
+        List<ProductDto> dto = productService.getAllProducts();
+
+        return !dto.isEmpty()
+                ? ResponseEntity.ok(productService.getAllProducts())
+                : ResponseEntity.notFound().build();
     }
 
     /**
