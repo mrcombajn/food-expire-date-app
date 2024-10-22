@@ -1,0 +1,13 @@
+services:
+  food-expire-date-application:
+    build:
+      context: .
+    ports:
+      - 8080:8080
+      
+  food-expire-date-application-db:
+    image: mysql
+    #volumes: 
+    #  - database:/data/db
+    ports:
+      - 27017:27017
